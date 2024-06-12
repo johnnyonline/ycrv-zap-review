@@ -30,7 +30,7 @@ interface IYBS {
 // NOTE: run with `--evm-version cancun` flag
 contract ZapTest is Test {
 
-    address public constant user = address(0x63B8537C7a18F0Df8780cB5F36085E5FFAdb02a5); // 5000 yCRV
+    address public user;
 
     IZapYCRV public zap;
 
@@ -57,9 +57,11 @@ contract ZapTest is Test {
         zap = IZapYCRV(deployCode("ZapYCRV.vy"));
 
         // initialize user
+        user = _createUser();
+
+        // approve YBS
         vm.prank(user);
         IYBS(YBS).setApprovedCaller(address(zap), IYBS.ApprovalStatus.StakeAndUnstake);
-        _fundUser();
     }
 
     // ============================================================================================
@@ -299,18 +301,19 @@ contract ZapTest is Test {
     // Internal helpers
     // ============================================================================================
 
-    function _fundUser() internal {
+    function _createUser() internal returns (address payable _user) {
+        _user = payable(makeAddr("user"));
         vm.deal({ account: user, newBalance: 100 ether });
-        deal({ token: address(YVECRV), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(CRV), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(YVBOOST), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(YCRV), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(STYCRV), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(LPYCRV_V1), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(LPYCRV_V2), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(POOL_V1), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(POOL_V2), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(CVXCRV), to: user, give: 1_000_000 * 10 ** 18 });
-        deal({ token: address(CVXCRVPOOL), to: user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(YVECRV), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(CRV), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(YVBOOST), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(YCRV), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(STYCRV), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(LPYCRV_V1), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(LPYCRV_V2), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(POOL_V1), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(POOL_V2), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(CVXCRV), to: _user, give: 1_000_000 * 10 ** 18 });
+        deal({ token: address(CVXCRVPOOL), to: _user, give: 1_000_000 * 10 ** 18 });
     }
 }
