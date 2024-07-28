@@ -1,0 +1,29 @@
+{
+  "transactions": [
+    {
+      "hash": null,
+      "transactionType": "CREATE",
+      "contractName": "RandomBera",
+      "contractAddress": "0xbf1035e71e4a770a08462b20c95de14763e1d186",
+      "function": null,
+      "arguments": null,
+      "transaction": {
+        "from": "0x318d0059efe546b5687fa6744af4339391153981",
+        "gas": "0x200fc",
+        "value": "0x0",
+        "input": "0x6080604052348015600e575f80fd5b5060dc80601a5f395ff3fe6080604052348015600e575f80fd5b50600436106026575f3560e01c8063b3b36bb314602a575b5f80fd5b6040805180820182526009815268165a595b1913995cdd60ba1b6020820152905160539190605c565b60405180910390f35b5f602080835283518060208501525f5b81811015608657858101830151858201604001528201606c565b505f604082860101526040601f19601f830116850101925050509291505056fea26469706673582212202728082b05f1db111d3d06c32e67ab2a3757aa9adb8686c635e553fc7f1112ab64736f6c63430008190033",
+        "nonce": "0x0",
+        "chainId": "0x138d4"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [],
+  "returns": {},
+  "timestamp": 1722090835,
+  "chain": 80084,
+  "commit": "f19dc4d"
+}
